@@ -165,6 +165,6 @@ Para *linkar* os relatórios basta usar o código (Exemplo Relatório 01):
 Relatórios desenvolvidos:
 
 - [Relatório 01 (02/09/2026)](rel01/index.html){target="_blank"}
-- [Relatório 02 (29/04/2022)](rel02/index.html){target="_blank"}
+- [Relatório 02 (03/09/2026)](rel02/index.html){target="_blank"}
 - [Relatório 03 (04/05/2022)](rel03/index.html){target="_blank"}
 - ...
