@@ -1,53 +1,247 @@
 ---
-title: "Relatório 01 - Introdução ao R"
-author: "Ben Dêivide"
-date: "12/04/2022"
-header-includes:
-  - \usepackage{titling}
-  - \pretitle{\begin{center}
-    \includegraphics[width=2in,height=2in]{ufsj.png}\LARGE\\}
-  - \posttitle{\end{center}}
-toc-title: "Sumário"
+
+title: "Relatório 1: Criação do Relatório"
+author: "Mario Marcos"
+date: "02/09/2026"
 output:
-  
-  bookdown::html_document2: 
-    theme: journal
-    highlight: tango
-    toc: yes
-    number_sections: yes
-    includes:
-      in_header: logo.html
-  pdf_document:
-    
-    toc: yes
-    number_sections: yes
----
+html_document:
+number_sections: true
+theme: readable
+---------------
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
---- 
+<style>
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
 
-# Objetivo
+.cabecalho-texto {
+  width: 70%;
+}
 
-Descrever as ideias básicas sobre o ambiente R:
+.cabecalho-imagem {
+  width: 25%;
+  text-align: right;
+}
 
-- Como instalar o R e RStudio;
-- Diferenças entre o R e a IDE RStudio;
-- Como o R trabalha;
-- Comandos elementares;
-- Objetos;
-- Manipulação com objetos;
-- Importação de dados;
-- Pacotes:
-  - Instalação;
-  - Como usar.
+.cabecalho-imagem img {
+  max-width: 150px;
+  height: auto;
+}
+</style>
 
-# Apresentação do relatório
+<div class="cabecalho">
 
-Diante do objetivo do relatório, apresentaremos nas próximas subseções, os pontos a serem discutidos.
+<div class="cabecalho-texto">
 
-## Como instalar o R e o RStudio
+# Relatório 1: Criação do Relatório
 
+**Autor:** Mario Marcos
 
+**Data:** 02/09/2026
 
+</div>
+
+<div class="cabecalho-imagem">
+
+<img src="ufsj.png" alt="Logo da UFSJ">
+
+</div>
+
+</div>
+
+# Introdução
+
+Este relatório apresenta as etapas realizadas para a criação, configuração e publicação de um projeto utilizando o R, RStudio, Git e GitHub.
+
+O processo envolveu a instalação dos programas necessários, a configuração do ambiente de desenvolvimento, a criação e conexão de um projeto Git com o GitHub, a alteração dos arquivos disponibilizados pelo professor e, finalmente, a publicação do trabalho utilizando o GitHub Pages.
+
+# SUMÁRIO
+
+1. [Instalação do R](#1-instalação-do-r)
+2. [Instalação do RStudio](#2-instalação-do-rstudio)
+3. [Instalação do Git](#3-instalação-do-git)
+4. [Criação da conta no GitHub](#4-criação-da-conta-no-github)
+5. [Instalação dos pacotes no R](#5-instalação-dos-pacotes-no-r)
+6. [Configuração do nome e e-mail do GitHub](#6-configuração-do-nome-e-e-mail-do-github)
+7. [Criação do token do GitHub](#7-criação-do-token-do-github)
+8. [Salvando o token](#8-salvando-o-token)
+9. [Criação do projeto Git](#9-criação-do-projeto-git)
+10. [Conectando o projeto ao GitHub](#10-conectando-o-projeto-ao-github)
+11. [Acesso aos arquivos do professor](#11-acesso-aos-arquivos-do-professor)
+12. [Alteração do nome](#12-alteração-do-nome)
+13. [Salvamento e envio das alterações](#13-salvamento-e-envio-das-alterações)
+14. [Configuração do GitHub Pages](#14-configuração-do-github-pages)
+15. [Publicação do trabalho](#15-publicação-do-trabalho)
+16. [Resumo do processo](#resumo-do-processo)
+17. [Conclusão](#conclusão)
+
+# 1. Instalação do R
+
+Primeiro, foi instalado o R no computador, utilizando a versão adequada para o sistema operacional.
+
+O R é o ambiente utilizado para realizar a programação e executar os comandos necessários para o desenvolvimento do projeto.
+
+# 2. Instalação do RStudio
+
+Depois, foi instalado o RStudio, que foi utilizado para abrir e editar os arquivos do projeto.
+
+O RStudio foi utilizado como ambiente principal para trabalhar com os arquivos da atividade.
+
+# 3. Instalação do Git
+
+Em seguida, foi instalado o Git, que permite fazer a sincronização dos arquivos com o GitHub.
+
+O Git foi utilizado posteriormente para registrar e enviar as alterações realizadas no projeto.
+
+# 4. Criação da conta no GitHub
+
+Para realizar o trabalho, foi utilizada uma conta no GitHub, onde o projeto seria armazenado e publicado.
+
+O GitHub possibilitou o armazenamento do projeto em um repositório remoto.
+
+# 5. Instalação dos pacotes no R
+
+No RStudio, foram instalados os pacotes necessários para realizar a atividade.
+
+Os pacotes utilizados foram:
+
+* rmarkdown
+* knitr
+* bookdown
+* tinytex
+* postcards
+* usethis
+* gitcreds
+
+O código utilizado para a instalação dos pacotes foi apresentado na atividade da seguinte forma:
+
+> pkgs <- c("rmarkdown", "knitr", "bookdown", "tinytex", "postcards", "usethis", "gitcreds")
+>
+> install.packages(pkgs)
+
+# 6. Configuração do nome e e-mail do GitHub
+
+Foi realizada a configuração do nome e do e-mail utilizados no GitHub dentro do RStudio.
+
+O comando utilizado foi:
+
+> usethis::use_git_config(
+>
+> user.name = "SeuNome",
+>
+> user.email = "[seu@email.com](mailto:seu@email.com)"
+>
+> )
+
+No momento da configuração, devem ser utilizados o nome e o e-mail associados à conta do GitHub.
+
+# 7. Criação do token do GitHub
+
+Depois, foi criado um token para permitir a comunicação entre o RStudio e o GitHub.
+
+O comando utilizado foi:
+
+> usethis::create_github_token()
+
+Esse procedimento permite gerar o token necessário para a comunicação com o GitHub.
+
+# 8. Salvando o token
+
+Após gerar o token, foi utilizado o comando para abrir o arquivo `.Renviron`.
+
+O comando utilizado foi:
+
+> usethis::edit_r_environ()
+
+Nesse arquivo, foi colocado o token na variável `GITHUB_PAT`, conforme orientado na atividade.
+
+O token deve ser mantido em segurança e não deve ser divulgado publicamente.
+
+# 9. Criação do projeto Git
+
+Depois, foi criado o repositório Git localmente através do RStudio.
+
+O comando utilizado foi:
+
+> usethis::use_git()
+
+Esse procedimento permitiu utilizar o Git para controlar as alterações realizadas nos arquivos do projeto.
+
+# 10. Conectando o projeto ao GitHub
+
+Em seguida, o projeto local foi conectado ao GitHub utilizando:
+
+> usethis::use_github()
+
+Assim, o projeto passou a ser sincronizado com o repositório do GitHub.
+
+# 11. Acesso aos arquivos do professor
+
+Depois de configurar o GitHub, foi acessado o projeto disponibilizado pelo professor.
+
+Os arquivos necessários para realizar a atividade foram baixados e abertos no RStudio.
+
+# 12. Alteração do nome
+
+Com os arquivos abertos no RStudio, foi procurado o nome do professor no projeto e realizada a substituição pelo nome do autor.
+
+O nome utilizado foi:
+
+**Mario Marcos**
+
+Essa foi a principal alteração realizada na atividade.
+
+# 13. Salvamento e envio das alterações
+
+Depois de alterar o nome, os arquivos foram salvos e foi realizado o envio das alterações para o GitHub utilizando os comandos do Git.
+
+Os comandos utilizados foram:
+
+> git add .
+>
+> git commit -m "Altera nome do professor"
+>
+> git push
+
+O comando `git add .` adiciona as alterações realizadas.
+
+O comando `git commit` registra as alterações realizadas no projeto.
+
+O comando `git push` envia essas alterações para o repositório no GitHub.
+
+# 14. Configuração do GitHub Pages
+
+Depois que os arquivos foram enviados, o repositório foi acessado no GitHub.
+
+Nas configurações do repositório, foi acessado:
+
+**Settings → Pages**
+
+Em seguida, foi configurada a publicação do projeto utilizando a branch correspondente.
+
+# 15. Publicação do trabalho
+
+Por fim, o GitHub Pages gerou um link para acessar o trabalho publicado.
+
+Foi realizada uma conferência para verificar se a página estava funcionando corretamente.
+
+Depois da verificação, o link foi utilizado para entregar a atividade.
+
+# Resumo do processo
+
+O processo realizado pode ser resumido da seguinte maneira:
+
+**Instalar R → RStudio → Git → instalar pacotes → configurar GitHub → criar token → configurar Git → baixar arquivos → alterar nome → enviar para GitHub → configurar Pages → publicar.**
+
+# Conclusão
+
+A atividade permitiu realizar as etapas necessárias para configurar e publicar um projeto utilizando R, RStudio, Git e GitHub.
+
+Inicialmente, foram instalados os programas e pacotes necessários. Em seguida, foram realizadas as configurações de nome, e-mail e autenticação com o GitHub.
+
+Posteriormente, o projeto foi configurado para utilizar o Git, conectado ao GitHub e atualizado com a alteração do nome do professor para o nome do autor.
+
+Por fim, as alterações foram enviadas ao GitHub, o GitHub Pages foi configurado e o trabalho foi publicado para acesso por meio de um link.
