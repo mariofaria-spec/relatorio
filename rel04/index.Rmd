@@ -1,38 +1,656 @@
+```rmd
 ---
-title: "Relatório 02"
-author: "Ben Dêivide"
-date: "12/04/2022"
-header-includes:
-  - \usepackage{titling}
-  - \pretitle{\begin{center}
-    \includegraphics[width=2in,height=2in]{ufsj.png}\LARGE\\}
-  - \posttitle{\end{center}}
-toc-title: "Sumário"
+title: "RELATÓRIO INDIVIDUAL: FUNDAMENTOS DA TEORIA DAS PROBABILIDADES E SUAS APLICAÇÕES NA EDUCAÇÃO BÁSICA"
+author: "Mario Marcos"
+date: "23/09/2026"
 output:
-  
   html_document:
-    theme: journal
-    highlight: tango
-    toc: yes
-    number_sections: yes
-    includes:
-      in_header: logo.html
-  pdf_document:
-    
-    toc: yes
-    number_sections: yes
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    theme: readable
+    toc_float: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+# SUMÁRIO
+
+1. [INTRODUÇÃO](#1-introdução)
+
+2. [OBJETIVOS](#2-objetivos)
+   - [2.1. Objetivo Geral](#21-objetivo-geral)
+   - [2.2. Objetivos Específicos](#22-objetivos-específicos)
+
+3. [CONCEITOS BÁSICOS DE CONJUNTOS NO CONTEXTO PROBABILÍSTICO](#3-conceitos-básicos-de-conjuntos-no-contexto-probabilístico)
+   - [3.1. Espaço Amostral e Eventos](#31-espaço-amostral-e-eventos)
+   - [3.2. Operações entre Eventos](#32-operações-entre-eventos)
+   - [3.3. Eventos Mutuamente Exclusivos](#33-eventos-mutuamente-exclusivos)
+
+4. [A MEDIDA DE PROBABILIDADE E OS AXIOMAS DE KOLMOGOROV](#4-a-medida-de-probabilidade-e-os-axiomas-de-kolmogorov)
+   - [4.1. A Construção Axiomática](#41-a-construção-axiomática)
+   - [4.2. Os Três Axiomas no Espaço Enumerável](#42-os-três-axiomas-no-espaço-enumerável)
+
+5. [PROPRIEDADES FUNDAMENTAIS DA PROBABILIDADE](#5-propriedades-fundamentais-da-probabilidade)
+   - [5.1. Probabilidade do Evento Impossível](#51-probabilidade-do-evento-impossível)
+   - [5.2. Probabilidade do Evento Complementar](#52-probabilidade-do-evento-complementar)
+   - [5.3. Monotonicidade da Probabilidade](#53-monotonicidade-da-probabilidade)
+   - [5.4. Aditividade Geral — Princípio da Inclusão-Exclusão](#54-aditividade-geral--princípio-da-inclusão-exclusão)
+
+6. [INDEPENDÊNCIA DE EVENTOS](#6-independência-de-eventos)
+   - [6.1. Definição Formal de Independência](#61-definição-formal-de-independência)
+   - [6.2. Independência e Exclusão Mútua](#62-independência-e-exclusão-mútua)
+   - [6.3. Independência de Múltiplos Eventos](#63-independência-de-múltiplos-eventos)
+
+7. [TEOREMA DA PROBABILIDADE TOTAL E TEOREMA DE BAYES](#7-teorema-da-probabilidade-total-e-teorema-de-bayes)
+   - [7.1. Partição do Espaço Amostral](#71-partição-do-espaço-amostral)
+   - [7.2. Teorema da Probabilidade Total](#72-teorema-da-probabilidade-total)
+   - [7.3. Teorema de Bayes](#73-teorema-de-bayes)
+
+8. [SITUAÇÃO-PROBLEMA: O TESTE DA DOENÇA RARA NA ESCOLA](#8-situação-problema-o-teste-da-doença-rara-na-escola)
+   - [8.1. Modelagem Matemática do Problema](#81-modelagem-matemática-do-problema)
+   - [8.2. Solução Formal via Teorema de Bayes](#82-solução-formal-via-teorema-de-bayes)
+   - [8.3. Análise Didática e Cognitiva](#83-análise-didática-e-cognitiva)
+
+9. [CONSIDERAÇÕES FINAIS E REFLEXÃO PEDAGÓGICA](#9-considerações-finais-e-reflexão-pedagógica)
+
+10. [REFERÊNCIAS BIBLIOGRÁFICAS](#10-referências-bibliográficas)
+
+---
+
+# 1. INTRODUÇÃO
+
+A Teoria da Probabilidade constitui o ramo da Matemática dedicado à modelagem quantitativa da incerteza e do acaso. Longe de ser apenas uma ferramenta de cálculo combinatório ou um jogo de adivinhação, a probabilidade moderna apoia-se em uma estrutura formal consistente que permite tomar decisões fundamentadas diante da imprevisibilidade.
+
+Historicamente originada da análise dos jogos de azar no século XVII — impulsionada por pensadores como Pascal e Fermat —, a probabilidade passou por diversas revisões conceituais até ser formalizada axiomaticamente pelo matemático soviético Andrey Kolmogorov em 1933. A axiomatização de Kolmogorov forneceu uma fundamentação matemática abrangente para a teoria, generalizando o tratamento de situações que não se enquadram necessariamente na definição clássica baseada na razão entre casos favoráveis e casos possíveis.
+
+Neste relatório, o objetivo é apresentar e conectar os principais fundamentos da Teoria das Probabilidades, relacionando o rigor matemático com situações e possibilidades de aplicação na Educação Básica.
+
+Busca-se também compreender como conceitos como espaço amostral, eventos, independência, probabilidade condicional, Teorema da Probabilidade Total e Teorema de Bayes podem contribuir para o desenvolvimento do raciocínio probabilístico dos estudantes.
+
+---
+
+# 2. OBJETIVOS
+
+## 2.1. Objetivo Geral
+
+Compreender e apresentar os fundamentos matemáticos da Teoria das Probabilidades, desde os conceitos básicos de espaço amostral e eventos até os axiomas de Kolmogorov, a independência de eventos, o Teorema da Probabilidade Total e o Teorema de Bayes, relacionando esses conhecimentos com situações-problema e possibilidades de aplicação no contexto da Educação Básica.
+
+## 2.2. Objetivos Específicos
+
+- Compreender o conceito de espaço amostral e sua importância na modelagem de experimentos aleatórios.
+
+- Identificar e representar eventos como subconjuntos do espaço amostral.
+
+- Compreender as operações de união, interseção e complementar entre eventos.
+
+- Diferenciar eventos mutuamente exclusivos de eventos independentes.
+
+- Apresentar os axiomas fundamentais de Kolmogorov e compreender sua importância para a construção formal da Teoria das Probabilidades.
+
+- Demonstrar propriedades fundamentais da probabilidade, incluindo a probabilidade do evento impossível, a probabilidade do complementar e a monotonicidade.
+
+- Compreender e demonstrar a fórmula da probabilidade da união de dois eventos.
+
+- Compreender o conceito de independência entre eventos e analisar situações envolvendo independência de múltiplos eventos.
+
+- Compreender o conceito de partição do espaço amostral.
+
+- Demonstrar e aplicar o Teorema da Probabilidade Total.
+
+- Demonstrar e aplicar o Teorema de Bayes.
+
+- Analisar uma situação-problema envolvendo teste diagnóstico e baixa prevalência.
+
+- Identificar a chamada falácia da taxa base e compreender sua relação com a interpretação de probabilidades condicionais.
+
+- Utilizar exemplos e representações por frequências naturais como estratégia didática para facilitar a compreensão de conceitos probabilísticos na Educação Básica.
+
+- Refletir sobre a importância do ensino de Probabilidade para o desenvolvimento do pensamento crítico e do letramento estatístico dos estudantes.
+
+---
+
+# 3. CONCEITOS BÁSICOS DE CONJUNTOS NO CONTEXTO PROBABILÍSTICO
+
+Antes de mensurar a chance de um evento, é necessário formalizar a linguagem conjuntista sob a qual os fenômenos aleatórios são descritos.
+
+## 3.1. Espaço Amostral e Eventos
+
+O **espaço amostral**, representado por $\Omega$, é o conjunto de todos os resultados possíveis de um experimento aleatório.
+
+Um **evento**, representado por $A$, é qualquer subconjunto do espaço amostral:
+
+$$
+A\subseteq\Omega.
+$$
+
+Na Educação Básica, diagramas de Venn e árvores de possibilidades podem auxiliar os estudantes a compreenderem a relação entre o espaço amostral e os eventos.
+
+## 3.2. Operações entre Eventos
+
+Como eventos são conjuntos, podemos realizar as operações tradicionais da Teoria dos Conjuntos.
+
+### União
+
+A união de $A$ e $B$ é representada por:
+
+$$
+A\cup B.
+$$
+
+Representa a ocorrência de $A$, de $B$ ou de ambos.
+
+### Interseção
+
+A interseção é representada por:
+
+$$
+A\cap B.
+$$
+
+Representa a ocorrência simultânea dos dois eventos.
+
+### Complementar
+
+O complementar de $A$ é representado por:
+
+$$
+A^c.
+$$
+
+Representa a não ocorrência do evento $A$.
+
+## 3.3. Eventos Mutuamente Exclusivos
+
+Dois eventos são mutuamente exclusivos quando não podem ocorrer simultaneamente.
+
+Formalmente:
+
+$$
+A\cap B=\emptyset.
+$$
+
+Por exemplo, em um lançamento de dado:
+
+$$
+A=\{2,4,6\}
+$$
+
+representa o evento "sair número par", enquanto:
+
+$$
+B=\{1,3,5\}
+$$
+
+representa o evento "sair número ímpar".
+
+Como:
+
+$$
+A\cap B=\emptyset,
+$$
+
+os eventos são mutuamente exclusivos.
+
+---
+
+# 4. A MEDIDA DE PROBABILIDADE E OS AXIOMAS DE KOLMOGOROV
+
+## 4.1. A Construção Axiomática
+
+A definição clássica de probabilidade como razão entre casos favoráveis e casos possíveis é adequada quando os resultados são equiprováveis, mas não é suficiente para descrever situações probabilísticas mais gerais.
+
+A formulação axiomática desenvolvida por Andrey Kolmogorov permite estabelecer uma estrutura matemática abrangente para a Teoria das Probabilidades.
+
+## 4.2. Os Três Axiomas no Espaço Enumerável
+
+Uma medida de probabilidade $P$ satisfaz:
+
+### Axioma 1 — Não-negatividade
+
+$$
+P(A)\geq0.
+$$
+
+### Axioma 2 — Normalização
+
+$$
+P(\Omega)=1.
+$$
+
+### Axioma 3 — Aditividade Numerável
+
+Se $A_1,A_2,\ldots$ são eventos mutuamente exclusivos par a par:
+
+$$
+P\left(\bigcup_{i=1}^{\infty}A_i\right)
+=
+\sum_{i=1}^{\infty}P(A_i).
+$$
+
+Para espaços amostrais finitos, essa propriedade reduz-se à aditividade finita.
+
+---
+
+# 5. PROPRIEDADES FUNDAMENTAIS DA PROBABILIDADE
+
+## 5.1. Probabilidade do Evento Impossível
+
+Temos:
+
+$$
+\boxed{P(\emptyset)=0}.
+$$
+
+### Demonstração
+
+Como:
+
+$$
+\Omega\cup\emptyset=\Omega
+$$
+
+e os conjuntos são disjuntos:
+
+$$
+P(\Omega)
+=
+P(\Omega)+P(\emptyset).
+$$
+
+Como $P(\Omega)=1$:
+
+$$
+1=1+P(\emptyset).
+$$
+
+Logo:
+
+$$
+P(\emptyset)=0.
+$$
+
+## 5.2. Probabilidade do Evento Complementar
+
+Como:
+
+$$
+A\cup A^c=\Omega
+$$
+
+e:
+
+$$
+A\cap A^c=\emptyset,
+$$
+
+temos:
+
+$$
+P(A)+P(A^c)=1.
+$$
+
+Portanto:
+
+$$
+\boxed{P(A^c)=1-P(A)}.
+$$
+
+## 5.3. Monotonicidade da Probabilidade
+
+Se:
+
+$$
+A\subseteq B,
+$$
+
+então:
+
+$$
+\boxed{P(A)\leq P(B)}.
+$$
+
+De fato:
+
+$$
+B=A\cup(B\cap A^c),
+$$
+
+com eventos disjuntos. Assim:
+
+$$
+P(B)=P(A)+P(B\cap A^c).
+$$
+
+Como:
+
+$$
+P(B\cap A^c)\geq0,
+$$
+
+concluímos:
+
+$$
+P(A)\leq P(B).
+$$
+
+## 5.4. Aditividade Geral — Princípio da Inclusão-Exclusão
+
+Para quaisquer eventos $A$ e $B$:
+
+$$
+\boxed{
+P(A\cup B)
+=
+P(A)+P(B)-P(A\cap B)
+}.
+$$
+
+A subtração da interseção evita que a região comum aos dois eventos seja contada duas vezes.
+
+---
+
+# 6. INDEPENDÊNCIA DE EVENTOS
+
+## 6.1. Definição Formal de Independência
+
+Dois eventos $A$ e $B$ são independentes quando:
+
+$$
+P(A\cap B)=P(A)P(B).
+$$
+
+Quando $P(B)>0$, isso equivale a:
+
+$$
+P(A\mid B)=P(A).
+$$
+
+## 6.2. Independência e Exclusão Mútua
+
+Exclusão mútua significa:
+
+$$
+A\cap B=\emptyset.
+$$
+
+Independência significa:
+
+$$
+P(A\cap B)=P(A)P(B).
+$$
+
+Se $P(A)>0$ e $P(B)>0$, eventos mutuamente exclusivos não podem ser independentes.
+
+## 6.3. Independência de Múltiplos Eventos
+
+Para três eventos $A$, $B$ e $C$ serem mutuamente independentes, é necessário verificar as independências dois a dois e também:
+
+$$
+P(A\cap B\cap C)
+=
+P(A)P(B)P(C).
+$$
+
+Portanto, independência dois a dois não é suficiente para garantir independência mútua.
+
+---
+
+# 7. TEOREMA DA PROBABILIDADE TOTAL E TEOREMA DE BAYES
+
+## 7.1. Partição do Espaço Amostral
+
+Uma coleção de eventos $A_1,\ldots,A_n$ constitui uma partição de $\Omega$ se:
+
+$$
+A_i\cap A_j=\emptyset
+$$
+
+para $i\neq j$ e:
+
+$$
+\bigcup_{i=1}^{n}A_i=\Omega.
+$$
+
+## 7.2. Teorema da Probabilidade Total
+
+Se $A_1,\ldots,A_n$ é uma partição de $\Omega$, então:
+
+$$
+\boxed{
+P(B)=
+\sum_{i=1}^{n}
+P(B\mid A_i)P(A_i)
+}.
+$$
+
+### Demonstração
+
+Como:
+
+$$
+B=\bigcup_{i=1}^{n}(B\cap A_i),
+$$
+
+e os eventos são disjuntos:
+
+$$
+P(B)=
+\sum_{i=1}^{n}P(B\cap A_i).
+$$
+
+Como:
+
+$$
+P(B\cap A_i)
+=
+P(B\mid A_i)P(A_i),
+$$
+
+segue que:
+
+$$
+P(B)=
+\sum_{i=1}^{n}
+P(B\mid A_i)P(A_i).
+$$
+
+## 7.3. Teorema de Bayes
+
+Temos:
+
+$$
+\boxed{
+P(A_k\mid B)
+=
+\frac{
+P(B\mid A_k)P(A_k)
+}{
+\sum_{i=1}^{n}
+P(B\mid A_i)P(A_i)
+}
+}.
+$$
+
+### Demonstração
+
+Pela definição:
+
+$$
+P(A_k\mid B)
+=
+\frac{P(A_k\cap B)}{P(B)}.
+$$
+
+Como:
+
+$$
+P(A_k\cap B)
+=
+P(B\mid A_k)P(A_k),
+$$
+
+e:
+
+$$
+P(B)=
+\sum_{i=1}^{n}
+P(B\mid A_i)P(A_i),
+$$
+
+obtemos a fórmula de Bayes.
+
+---
+
+# 8. SITUAÇÃO-PROBLEMA: O TESTE DA DOENÇA RARA NA ESCOLA
+
+## 8.1. Modelagem Matemática do Problema
+
+Considere uma população de 1.200 estudantes.
+
+A prevalência da doença é de $1\%$.
+
+A sensibilidade do teste é de $90\%$ e a especificidade é de $95\%$.
+
+Definimos:
+
+- $D$: estudante possui a doença;
+- $D^c$: estudante não possui a doença;
+- $+$: teste positivo;
+- $-$: teste negativo.
+
+Temos:
+
+$$
+P(D)=0{,}01,
+$$
+
+$$
+P(D^c)=0{,}99,
+$$
+
+$$
+P(+\mid D)=0{,}90,
+$$
+
+e:
+
+$$
+P(-\mid D^c)=0{,}95.
+$$
+
+Logo:
+
+$$
+P(+\mid D^c)=0{,}05.
+$$
+
+## 8.2. Solução Formal via Teorema de Bayes
+
+Pelo Teorema da Probabilidade Total:
+
+$$
+P(+)
+=
+(0{,}90)(0{,}01)
++
+(0{,}05)(0{,}99).
+$$
+
+Assim:
+
+$$
+P(+)=0{,}0585.
+$$
+
+Aplicando Bayes:
+
+$$
+P(D\mid +)
+=
+\frac{0{,}90\cdot0{,}01}{0{,}0585}.
+$$
+
+Logo:
+
+$$
+P(D\mid +)
+=
+\frac{2}{13}
+\approx
+15{,}38\%.
+$$
+
+Portanto:
+
+$$
+\boxed{P(D\mid +)\approx15{,}38\%}.
+$$
+
+## 8.3. Análise Didática e Cognitiva
+
+O resultado evidencia a importância da taxa base.
+
+É comum confundir:
+
+$$
+P(+\mid D)
+$$
+
+com:
+
+$$
+P(D\mid +).
+$$
+
+Entretanto, essas probabilidades representam situações diferentes.
+
+Para 1.200 estudantes:
+
+- 12 são esperados como doentes;
+- 1.188 são esperados como saudáveis;
+- aproximadamente 10,8 dos doentes terão teste positivo;
+- aproximadamente 59,4 dos saudáveis terão teste positivo.
+
+Assim, entre os resultados positivos, a parcela correspondente aos verdadeiros positivos é:
+
+$$
+\frac{10{,}8}{10{,}8+59{,}4}
+=
+\frac{2}{13}
+\approx15{,}38\%.
+$$
+
+Essa representação por frequências naturais pode ser pedagogicamente mais acessível aos estudantes do que apresentar inicialmente apenas a fórmula de Bayes.
+
+---
+
+# 9. CONSIDERAÇÕES FINAIS E REFLEXÃO PEDAGÓGICA
+
+A elaboração deste relatório permitiu percorrer os principais fundamentos da Teoria das Probabilidades, desde a linguagem dos conjuntos e a definição de eventos até os axiomas de Kolmogorov e os principais teoremas relacionados às probabilidades condicionais.
+
+A análise da situação-problema demonstrou que compreender probabilidade exige mais do que aplicar fórmulas. É necessário interpretar corretamente o significado das probabilidades condicionais e considerar as taxas de base envolvidas.
+
+No contexto da Educação Básica, o ensino de Probabilidade pode contribuir significativamente para o desenvolvimento do pensamento crítico e do letramento estatístico.
+
+O uso de situações concretas, tabelas, frequências naturais, diagramas e problemas relacionados ao cotidiano pode favorecer uma compreensão mais significativa dos conceitos matemáticos.
+
+Dessa forma, o estudo da Probabilidade ultrapassa o simples domínio de técnicas de cálculo e contribui para a formação de estudantes capazes de interpretar informações, avaliar evidências e tomar decisões fundamentadas diante de situações de incerteza.
+
+# 10. REFERÊNCIAS BIBLIOGRÁFICAS
+
+1. **BUSSAB, Wilton de O.; MORETTIN, Pedro A.** *Estatística Básica*. 6. ed. São Paulo: Saraiva, 2010.
+
+2. **CARVALHO, Paulo Cezar Pinto; MORGADO, Augusto César; WAGNER, Eduardo; FERNANDEZ, Pedro.** *Análise Combinatória e Probabilidade*. 9. ed. Rio de Janeiro: SBM, 2005.
+
+3. **FERREIRA, Eric B.; OLIVEIRA, Marcelo S.** *Introdução à Estatística com R*. Lavras: Editora UFLA, 2020.
+
+4. **LIMA, Elon Lages et al.** *Estatística e Probabilidade: Um curso para o PROFMAT*. Rio de Janeiro: SBM, 2016.
+
+5. **PINHEIRO, Roberto; CUNHA, Geraldo.** *Probabilidade e Estatística: Quantificando a Incerteza*. Rio de Janeiro: Elsevier / Editora Campus, 2012.
+
+6. **UNIVERSIDADE FEDERAL DO PARANÁ (UFPR).** *Estatística Básica*. Departamento de Estatística, UFPR, 2022.
 ```
---- 
 
-# Objetivo
 
-Descrever o objetivo do relatório!
 
-# Apresentação do relatório
 
-Aqui será o local para apresentar o material sobre o relatório.
 
